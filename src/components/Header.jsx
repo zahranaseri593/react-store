@@ -6,7 +6,7 @@ const Header = () => {
     return ( 
     <header>
         <div>
-          Sign up and <span>GET 20% OFF</span> for your first order. 
+          Sign up and <span className="font-bold">GET 20% OFF</span> for your first order. 
           <Link to="/" style={{color: "var(--lightest-color)",textDecoration: "underline" , fontWeight: "bold"}}>
             Sign up now</Link>
         </div>
