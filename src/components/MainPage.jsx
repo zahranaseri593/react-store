@@ -1,22 +1,34 @@
 import Select from 'react-select';
-import sampleProduct from '../assets/sample.jpg'
 import poster from '../assets/notice.jpg'
 import {BiEnvelope} from 'react-icons/bi'
+import Products from './Products';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const sortOpt = [
   { value: 'des', label: 'descending' },
   { value: 'asc', label: 'ascending' },
 ];
 
-const categoryOpt = [
-    { value: 'all', label: 'all' },
-    { value: 'men', label: 'men' },
-    { value: 'women', label: 'women' },
-    { value: 'jewelry', label: 'jewelry' },
-    { value: 'accessories', label: 'accessories'}
-  ]; //fetch categories from api
-
 const MainPage = () => {
+
+  const [products, setProducst] = useState('')
+  const [categories, setCategories ] = useState([{ value: 'all', label: 'all' }])
+
+  useEffect(()=>{
+    async function fetchproducts(){
+      const { data } = await axios.get('https://fakestoreapi.com/products?limit=10')
+      setProducst(data)
+    }
+    async function fetchcategory(){
+      const { data } = await axios.get('https://fakestoreapi.com/products/categories')
+      setCategories(data.map(c => ({value: c , label: c })))
+    }
+    
+    fetchproducts()
+    fetchcategory()
+  },[])
+
     return ( 
         <div id='main'>
             {/* filters */}
@@ -30,20 +42,12 @@ const MainPage = () => {
                     />
                     <label htmlFor="sort">category</label>
                     <Select
-                      options={categoryOpt}
+                      options={categories}
                     />
                 </div>
             </div>
             {/* products */}
-            <div className='product-list'>
-                <div className='product'>
-                    <div className='product-image' style={{backgroundImage: `url(${sampleProduct})`}}></div>
-                    <div><span>Mens Casual</span><span className='font-bold'>$22.3</span></div>
-                    <div>Men {/*<a href='/' className='product-btn'>add to cart</a>*/}</div>
-                    <p>Sale</p>
-                </div>
-                {/* ready to fetch the products from backend and render them to the page*/}
-            </div>
+            <Products products={products}/>
 
             <div className='off'>
               <div className='off-image' style={{backgroundImage: `url(${poster})`}}></div>
