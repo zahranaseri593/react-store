@@ -280,6 +280,6 @@ footer .container{
   border-radius: 5px;
 }
 
-.spinner{
-  text-align: center;
+.spinner svg{
+  margin: auto;
 }

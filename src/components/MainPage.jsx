@@ -3,10 +3,10 @@ import poster from '../assets/notice.jpg'
 import {BiEnvelope} from 'react-icons/bi'
 import Products from './Products';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import {fetchFromAPI} from '../utils/fetchFromAPI'
 
 const sortOpt = [
-  { value: 'des', label: 'descending' },
+  { value: 'desc', label: 'descending' },
   { value: 'asc', label: 'ascending' },
 ];
 
@@ -15,34 +15,38 @@ const MainPage = () => {
   const [products, setProducst] = useState('')
   const [categories, setCategories ] = useState([{ value: 'all', label: 'all' }])
 
+  const [selectedCategory, setSelectedCategory] = useState( { value: 'jewelery', label: 'jewelery' })
+  const [sort, setSort] = useState('desc')
+
   useEffect(()=>{
-    async function fetchproducts(){
-      const { data } = await axios.get('https://fakestoreapi.com/products?limit=10')
-      setProducst(data)
-    }
-    async function fetchcategory(){
-      const { data } = await axios.get('https://fakestoreapi.com/products/categories')
-      setCategories(data.map(c => ({value: c , label: c })))
-    }
-    
-    fetchproducts()
-    fetchcategory()
+    fetchFromAPI(`products/category/${selectedCategory.value}?sort=${sort}&limit=20`)
+    .then((data)=> setProducst(data))
+    .catch((err) => console.log(err))
+  },[selectedCategory,sort])
+
+  useEffect(()=>{
+    fetchFromAPI(`products/categories`)
+    .then((data)=> setCategories(data.map(c => ({value: c , label: c }))))
+    .catch((err) => console.log(err))
   },[])
 
-    return ( 
+    return (
         <div id='main'>
             {/* filters */}
             <div className='filter'>
-                <p>Showing 10 results from total of 37 </p>
+                <p>showing {products.length} results from {selectedCategory.value} category </p>
                 <div className='selects'>
                 <label htmlFor="sort">Sort by</label>
                     <Select
-                    // value = { state }
+                      defaultValue={sortOpt[0]}
                       options={sortOpt}
-                    />
+                      onChange={(e)=>setSort(e.value)}
+                      />
                     <label htmlFor="sort">category</label>
                     <Select
+                      defaultValue={selectedCategory}
                       options={categories}
+                      onChange={(e)=>setSelectedCategory(e)}
                     />
                 </div>
             </div>

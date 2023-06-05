@@ -1,16 +1,14 @@
-import { RotatingLines } from 'react-loader-spinner';
-import sampleProduct from '../assets/sample.jpg'
+import { LineWave } from 'react-loader-spinner';
 
 const Products = ({products}) => {
     if(!products) {
         return(
             <div className='spinner'>
-            <RotatingLines
-              strokeColor="pink"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="96"
-              visible={true}
+            <LineWave
+                height="100"
+                width="100"
+                color="#1f2937"
+                ariaLabel="line-wave"
             />
             </div>
     )}
