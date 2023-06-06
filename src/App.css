@@ -369,7 +369,7 @@ footer .container{
 }
 
 .related-products{
-  max-width: 1400px;
+  max-width: 1200px;
   margin: auto;
   padding: 3rem 1rem;
 }
@@ -378,4 +378,6 @@ footer .container{
   display: flex;
   gap: 1.5rem;
   padding: 1.5rem 0;
+  justify-content:center;
+  flex-wrap: wrap;
 }

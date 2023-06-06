@@ -7,20 +7,24 @@ import Product from "./Product";
 
 const ProductPage = () => {
     const [productDetail, setProductDetail] = useState(null);
-    // const [products, setProducts] = useState();
+    const [products, setProducts] = useState('');
+
     
     const {id} = useParams()
 
     useEffect(()=>{
-        fetchFromAPI(`products/${id}`)
-        .then((data)=> setProductDetail(data))
-        .catch((err) => console.log(err))
+
+      const fetchResults = async () => {
+          const data = await fetchFromAPI(`products/${id}`)
+    
+          setProductDetail(data)
+    
+          const relative = await fetchFromAPI(`products/category/${data.category}?limit=4`)
+    
+          setProducts(relative)
+      }
+      fetchResults()
     },[id])
-    // useEffect(()=>{
-    //     fetchFromAPI(`products/&limit=4`)
-    //     .then((data)=> setProducts(data))
-    //     .catch((err) => console.log(err))
-    // },[])
     
     if(!productDetail) {
         return(
@@ -51,9 +55,15 @@ const ProductPage = () => {
             <div className="related-products">
                 <h2>Related Products</h2>
                 <div>
-                    {/* {products? .map((p)=>(
-                        <Product p={p}/>
-                    )) : <LineWave/>} */}
+                {products.length? 
+                    products?.map((p)=> <Product p={p}/> )
+                    : 
+                    <LineWave
+                        height="100"
+                        width="100"
+                        color="#1f2937"
+                        ariaLabel="line-wave"
+                    />}
                 </div>
             </div>
         </div>
