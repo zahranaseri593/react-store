@@ -283,3 +283,89 @@ footer .container{
 .spinner svg{
   margin: auto;
 }
+
+.product-container{
+  display: flex;
+  gap: 1.5rem;
+  max-width: 800px;
+  align-items: start;
+  margin:1.5rem auto;
+}
+
+.product-img{
+  width: 50%;
+  min-width: 300px;
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  border: var(--light-color) 1px solid;
+  border-radius: 10px;
+}
+
+.product-desc{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.product-desc > h3{
+  margin-bottom: 5px;
+}
+
+.product-desc > .rating{
+  display: flex;
+  align-items: end;
+  font-size: 12px;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.product-desc > .rating > svg{
+  color: #facc15;
+}
+
+.product-desc > .price{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.product-desc > .cat{
+  font-weight: 600;
+  color: var(--light-color);
+  margin-bottom: 7px;
+}
+
+.product-desc > .desc{
+  color: var(--secondary-color);
+  max-width: 300px;
+  margin-bottom: 15px;
+}
+
+.product-desc > a{
+  background-color: var(--darkest-color);
+  color: #fff;
+  padding: 7px 15px ;
+  border-radius: 5px;
+  text-decoration: none;
+  align-self: self-start;
+  font-size: 12px;
+  transition: all .5s;
+}
+
+.product-desc > a:hover{
+  background-color: var(--secondary-color);
+}
+
+.related-products{
+  max-width: 1400px;
+  margin: auto;
+  padding: 3rem 1rem;
+}
+
+.related-products > div{
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}

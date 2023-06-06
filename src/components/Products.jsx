@@ -1,4 +1,5 @@
 import { LineWave } from 'react-loader-spinner';
+import Product from './Product';
 
 const Products = ({products}) => {
     if(!products) {
@@ -16,11 +17,7 @@ const Products = ({products}) => {
     return ( 
         <div className='product-list'>
          {products.map(p=> (
-            <div className='product' key={p.id}>
-                <div className='product-image' style={{backgroundImage: `url(${p.image})`}}></div>
-                <div><span>{p.title.slice(0,10)}</span><span className='font-bold'>${p.price}</span></div>
-                <div>{p.category} <a href='/' className='product-btn'>view product</a></div>
-            </div>
+            <Product p={p}/>
          ))
          }
         </div>
