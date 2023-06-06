@@ -12,17 +12,19 @@ const Header = () => {
         </div>
 
         <nav>
-          <h2 className="Logo">STORE</h2>
-          <ul>
-            <li>Shop</li>
-            <li>Most wanted</li>
-            <li>New arrival</li>
-            <li>Brands</li>
-          </ul>
+          <Link to='/'>
+            <h2 className="Logo">STORE</h2>
+          </Link>
+            <ul>
+              <li>Shop</li>
+              <li>Most wanted</li>
+              <li>New arrival</li>
+              <li>Brands</li>
+            </ul>
           <div>
-          <SearchBar/>
-          <BiCartAlt size='20'/>
-          <BiUser size='20'/>
+            <SearchBar/>
+            <BiCartAlt size='20'/>
+            <BiUser size='20'/>
           </div>
         </nav>
     </header>
