@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { LineWave } from "react-loader-spinner";
 import Product from "./Product";
+import {useCartContext} from '../utils/CartContextProvider'
 
 const ProductPage = () => {
     const [productDetail, setProductDetail] = useState(null);
     const [products, setProducts] = useState('');
 
+    const {addToCart} = useCartContext()
     
     const {id} = useParams()
 
@@ -16,15 +18,14 @@ const ProductPage = () => {
 
       const fetchResults = async () => {
           const data = await fetchFromAPI(`products/${id}`)
-    
           setProductDetail(data)
     
           const relative = await fetchFromAPI(`products/category/${data.category}?limit=4`)
-    
           setProducts(relative)
       }
       fetchResults()
     },[id])
+
     
     if(!productDetail) {
         return(
@@ -48,7 +49,7 @@ const ProductPage = () => {
                     <span className='price'>${productDetail.price}</span>
                     <p className="cat">{productDetail.category}</p>
                     <p className="desc">{productDetail.description.slice(0,200)}</p>
-                    <a href="/">Add to cart</a>
+                    <a href="/" onClick={(e)=>addToCart(e,productDetail)}>Add to cart</a>
                 </div>
             </div>
 
