@@ -19,7 +19,9 @@ const Cart = () => {
                  ))}
                </div>
             </div>
-            <div className='total-cost'></div>
+            <div className='total-cost'>
+               {/* calculate total considering counts */}
+            </div>
         </div>
      )
 }

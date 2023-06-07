@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import IncDecBtn from './IncDecBtn';
-import { useCartContext } from '../utils/CartContextProvider';
-import { BiTrashAlt } from 'react-icons/bi';
+import IncDecBtn from './IncDecBtn'
+import { useCartContext } from '../utils/CartContextProvider'
+import { BiTrashAlt } from 'react-icons/bi'
 
 const CartItem = ({c}) => {
     const {addToCart,decrement,isProductInCart,removeFromCart} = useCartContext()

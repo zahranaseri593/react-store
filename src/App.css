@@ -444,7 +444,9 @@ footer .container{
 .cart-container > div:last-child{
   border-radius: 10px;
   width: 40%;
+  border: 1px solid #e3e3e3;
 }
+
 
 .cart-table{
   display: grid;
