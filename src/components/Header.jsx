@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { BiCartAlt,BiUser } from "react-icons/bi";
+import {useCartContext} from '../utils/CartContextProvider'
 
 const Header = () => {
+
+    const {cart} = useCartContext()
+  
     return ( 
     <header>
         <div>
@@ -23,7 +27,7 @@ const Header = () => {
             </ul>
           <div>
             <SearchBar/>
-            <BiCartAlt size='20'/>
+            <Link to='/cart' className="cart-icon"><BiCartAlt size='20'/><span>{cart.length}</span></Link>
             <BiUser size='20'/>
           </div>
         </nav>

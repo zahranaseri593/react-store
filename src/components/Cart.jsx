@@ -7,7 +7,7 @@ const Cart = () => {
        
     return ( 
         cart?.map( (c) => (
-           <p>c.title</p> 
+           <p>{c.title}</p> 
         ))
      )
 }

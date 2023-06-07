@@ -53,6 +53,17 @@ nav >div{
   align-items: center;
 }
 
+.cart-icon{
+  text-decoration: none;
+}
+
+.cart-icon> span{
+  background-color: var(--sale-color);
+  color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+}
+
 .search{
   display: flex;
   align-items: center;
@@ -380,4 +391,35 @@ footer .container{
   padding: 1.5rem 0;
   justify-content:center;
   flex-wrap: wrap;
+}
+
+.inCart{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--darkest-color);
+  border-radius: 7px;
+}
+
+.inCart >span{
+  background-color: var(--darkest-color);
+  padding: 10px;
+  color: #fff;
+  /* font-weight: bold; */
+  font-size: 20px;
+  cursor: pointer;
+  transition: all .5s ;
+}
+
+.inCart >span:hover{
+  background-color: var(--secondary-color);
+}
+
+.inCart >span:first-child{
+  border-radius: 5px 0 0 5px;
+}
+
+.inCart >span:last-child{
+  border-radius: 0 5px 5px 0;
 }

@@ -42,7 +42,7 @@ export const CartContextProvider = ({children}) => {
         else return false
     }
 
-    // write the functions you need for adding, removing, inc, dec
+    // removing ...
 
     return(
         <CartContext.Provider value={{cart,addToCart,decrement,isProductInCart}}>
