@@ -10,7 +10,7 @@ const ProductPage = () => {
     const [productDetail, setProductDetail] = useState(null);
     const [products, setProducts] = useState('');
 
-    const {addToCart} = useCartContext()
+    const {addToCart,decrement,isProductInCart} = useCartContext()
     
     const {id} = useParams()
 
@@ -49,7 +49,9 @@ const ProductPage = () => {
                     <span className='price'>${productDetail.price}</span>
                     <p className="cat">{productDetail.category}</p>
                     <p className="desc">{productDetail.description.slice(0,200)}</p>
-                    <a href="/" onClick={(e)=>addToCart(e,productDetail)}>Add to cart</a>
+                    {isProductInCart(productDetail.id) ? 
+                    <div className="inCart"><span onClick={()=>decrement(productDetail.id)}>-</span>{isProductInCart(productDetail.id)}<span onClick={(e)=>addToCart(e,productDetail)} >+</span></div> :
+                    <a href="/" onClick={(e)=>addToCart(e,productDetail)}>Add to cart</a>}
                 </div>
             </div>
 
