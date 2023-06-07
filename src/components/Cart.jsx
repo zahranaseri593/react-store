@@ -1,4 +1,5 @@
 import {useCartContext} from '../utils/CartContextProvider'
+import CartItem from './CartItem'
 
 const Cart = () => {
     const {cart} = useCartContext()
@@ -6,9 +7,20 @@ const Cart = () => {
     if(!cart.length) return <p>nothing in here</p>
        
     return ( 
-        cart?.map( (c) => (
-           <p>{c.title}</p> 
-        ))
+        <div className='cart-container'>
+            <div>
+               <h1>Cart</h1>
+               <div className='cart-table'>
+                  <h5>PRODUCT</h5><h5>QUANTITY</h5>
+                  <h5>PRICE</h5>
+               {/* products */}
+                 {cart.map((c)=>(
+                  <CartItem c={c}/>
+                 ))}
+               </div>
+            </div>
+            <div className='total-cost'></div>
+        </div>
      )
 }
  

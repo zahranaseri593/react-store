@@ -5,6 +5,7 @@ import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { LineWave } from "react-loader-spinner";
 import Product from "./Product";
 import {useCartContext} from '../utils/CartContextProvider'
+import IncDecBtn from "./IncDecBtn";
 
 const ProductPage = () => {
     const [productDetail, setProductDetail] = useState(null);
@@ -50,7 +51,11 @@ const ProductPage = () => {
                     <p className="cat">{productDetail.category}</p>
                     <p className="desc">{productDetail.description.slice(0,200)}</p>
                     {isProductInCart(productDetail.id) ? 
-                    <div className="inCart"><span onClick={()=>decrement(productDetail.id)}>-</span>{isProductInCart(productDetail.id)}<span onClick={(e)=>addToCart(e,productDetail)} >+</span></div> :
+                    <IncDecBtn 
+                    decrement={decrement}
+                    isProductInCart={isProductInCart}
+                    addToCart={addToCart}
+                    productDetail={productDetail} /> :
                     <a href="/" onClick={(e)=>addToCart(e,productDetail)}>Add to cart</a>}
                 </div>
             </div>

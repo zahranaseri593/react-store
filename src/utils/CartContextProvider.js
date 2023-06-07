@@ -43,9 +43,14 @@ export const CartContextProvider = ({children}) => {
     }
 
     // removing ...
+    const removeFromCart=(e,productId)=>{
+        e.preventDefault()
+        const updatedCart = cart.filter(c => c.id !== productId);
+        setCart(updatedCart)
+    }
 
     return(
-        <CartContext.Provider value={{cart,addToCart,decrement,isProductInCart}}>
+        <CartContext.Provider value={{cart,addToCart,decrement,isProductInCart,removeFromCart}}>
             {children}
         </CartContext.Provider>
     )
