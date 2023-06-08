@@ -4,6 +4,7 @@ const CartContext = createContext()
 
 export const CartContextProvider = ({children}) => {
     const [cart, setCart] = useState([])
+    const [total,setTotal] = useState(0)
 
     
     // adding to cart + inc button
@@ -11,12 +12,13 @@ export const CartContextProvider = ({children}) => {
         e.preventDefault()
         const productIndex = cart.findIndex((c) => c.id === product.id)
         const updatedCart = [...cart]
+        setTotal(prev => prev += product.price)
         if(productIndex > -1) //inc
         {
             updatedCart[productIndex].count++
             setCart(updatedCart)
         }
-        else{//if doesn't exist add to cart
+        else{ //if doesn't exist add to cart
             setCart([...updatedCart,{...product,count:1}])
         }
     }
@@ -25,6 +27,7 @@ export const CartContextProvider = ({children}) => {
     const decrement = (productId) =>{
         const productIndex = cart.findIndex((c) => c.id === productId)
         const updatedCart = [...cart]
+        setTotal(prev => prev -= updatedCart[productIndex].price)
         if(updatedCart[productIndex].count > 1){//if more than 1 decr
             updatedCart[productIndex].count--
             setCart(updatedCart)
@@ -45,12 +48,14 @@ export const CartContextProvider = ({children}) => {
     // removing ...
     const removeFromCart=(e,productId)=>{
         e.preventDefault()
+        const prductIndex = cart.findIndex(c => c.id === productId);
         const updatedCart = cart.filter(c => c.id !== productId);
+        setTotal(prev => prev -= cart[prductIndex].price )
         setCart(updatedCart)
     }
 
     return(
-        <CartContext.Provider value={{cart,addToCart,decrement,isProductInCart,removeFromCart}}>
+        <CartContext.Provider value={{cart,total,addToCart,decrement,isProductInCart,removeFromCart}}>
             {children}
         </CartContext.Provider>
     )

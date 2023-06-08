@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import MainPage from './components/MainPage';
 import ProductPage from './components/ProductPage';
 import Cart from './components/Cart';
+import Transaction from './components/Transaction'
 import { CartContextProvider } from './utils/CartContextProvider';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
               <Route path='/products' element={<MainPage />}/>
               <Route path='/products/:id' element={<ProductPage />}/>
               <Route path='/cart/:id?' element={<Cart/>}/>
+              <Route path='/transaction' element={<Transaction />}/>
               <Route path='/register' element={<p>register</p>}/>
               <Route path='/login' element={<p>login</p>}/>
           </Routes>

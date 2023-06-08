@@ -1,10 +1,15 @@
+import { Link } from 'react-router-dom'
 import {useCartContext} from '../utils/CartContextProvider'
 import CartItem from './CartItem'
 
 const Cart = () => {
-    const {cart} = useCartContext()
+    const {cart,total} = useCartContext()
 
-    if(!cart.length) return <p>nothing in here</p>
+    if(!cart.length) return (
+    <div className='empty-cart'>
+      <p>nothing in here...</p>
+    </div>
+    )
        
     return ( 
         <div className='cart-container'>
@@ -20,7 +25,12 @@ const Cart = () => {
                </div>
             </div>
             <div className='total-cost'>
+               <div>
+                  <h2>Total</h2>
+                  <p>$ {total}</p>
+               </div>
                {/* calculate total considering counts */}
+               <Link to='/transaction'>Purchase</Link>
             </div>
         </div>
      )
