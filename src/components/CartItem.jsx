@@ -4,8 +4,19 @@ import { useCartContext } from '../utils/CartContextProvider'
 import { BiTrashAlt } from 'react-icons/bi'
 
 const CartItem = ({c}) => {
-    const {addToCart,decrement,isProductInCart,removeFromCart} = useCartContext()
+    const {isProductInCart,dispatch} = useCartContext()
     
+    const removeHandle = (e,poductId)=>{
+        e.preventDefault()
+        dispatch({type:"REMOVE",payload: poductId})
+    }
+    const HandleAdd = (e,productDetail) =>{
+        e.preventDefault()
+        dispatch({type:"ADD_TO_CART",payload: productDetail})
+    }
+    const HandleDec = (productDetail) =>{
+        dispatch({type:"DECREMENT",payload: productDetail})
+    }
     return ( 
         <>
         <div className='cart-product'>
@@ -14,13 +25,13 @@ const CartItem = ({c}) => {
         </div>
         <div className='cart-quantity'>
         <IncDecBtn
-         decrement={decrement}
+         decrement={HandleDec}
          isProductInCart={isProductInCart}
-         addToCart={addToCart}
+         addToCart={HandleAdd}
          productDetail={c}
          marginRight='auto'
         />
-        <button className='removeBtn' onClick={(e)=>removeFromCart(e,c.id)}>remove <BiTrashAlt size='20px'/> </button>
+        <button className='removeBtn' onClick={(e)=>removeHandle(e,c.id)}>remove <BiTrashAlt size='20px'/> </button>
         </div>
         <span className='cart-price'>${c.price}</span></>
      );

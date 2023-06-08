@@ -3,9 +3,9 @@ import {useCartContext} from '../utils/CartContextProvider'
 import CartItem from './CartItem'
 
 const Cart = () => {
-    const {cart,total} = useCartContext()
+    const {state} = useCartContext()
 
-    if(!cart.length) return (
+    if(!state.cart.length) return (
     <div className='empty-cart'>
       <p>nothing in here...</p>
     </div>
@@ -19,7 +19,7 @@ const Cart = () => {
                   <h5>PRODUCT</h5><h5>QUANTITY</h5>
                   <h5>PRICE</h5>
                {/* products */}
-                 {cart.map((c)=>(
+                 {state.cart.map((c)=>(
                   <CartItem c={c}/>
                  ))}
                </div>
@@ -27,7 +27,7 @@ const Cart = () => {
             <div className='total-cost'>
                <div>
                   <h2>Total</h2>
-                  <p>$ {total}</p>
+                  <p>$ {Math.floor(state.total)}</p>
                </div>
                {/* calculate total considering counts */}
                <Link to='/transaction'>Purchase</Link>

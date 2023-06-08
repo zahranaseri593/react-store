@@ -166,7 +166,7 @@ footer .container{
 .product div:nth-child(3){
   color: var(--light-color);
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
 }
 
@@ -233,7 +233,7 @@ footer .container{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   gap: 1.5rem;
 }
 
@@ -309,7 +309,7 @@ footer .container{
   display: flex;
   gap: 1.5rem;
   max-width: 800px;
-  align-items: start;
+  align-items: flex-start;
   margin:1.5rem auto;
 }
 
@@ -336,7 +336,7 @@ footer .container{
 
 .product-desc > .rating{
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   font-size: 12px;
   gap: 5px;
   margin-bottom: 15px;
@@ -439,7 +439,7 @@ footer .container{
   gap: 20px;
   margin: auto;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .cart-container > div:first-child{
@@ -509,7 +509,7 @@ footer .container{
 
 .cart-product{
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 20px;
 }
 
@@ -582,7 +582,7 @@ footer .container{
 .transaction > div:last-child{
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   gap: 10px;
 }
 

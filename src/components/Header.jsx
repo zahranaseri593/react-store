@@ -5,7 +5,7 @@ import {useCartContext} from '../utils/CartContextProvider'
 
 const Header = () => {
 
-    const {cart} = useCartContext()
+    const {state} = useCartContext()
   
     return ( 
     <header>
@@ -27,7 +27,7 @@ const Header = () => {
             </ul>
           <div>
             <SearchBar/>
-            <Link to='/cart' className="cart-icon"><BiCartAlt size='20'/><span>{cart.length}</span></Link>
+            <Link to='/cart' className="cart-icon"><BiCartAlt size='20'/><span>{state.cart.length}</span></Link>
             <BiUser size='20'/>
           </div>
         </nav>

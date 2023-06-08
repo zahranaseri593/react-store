@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Product = ({p}) => {
-
-
+    
     return ( 
         <div className='product' key={p.id}>
             <Link to={`/products/${p.id}`}>

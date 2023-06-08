@@ -8,25 +8,32 @@ import {useCartContext} from '../utils/CartContextProvider'
 import IncDecBtn from "./IncDecBtn";
 
 const ProductPage = () => {
-    const [productDetail, setProductDetail] = useState(null);
-    const [products, setProducts] = useState('');
+    const [productDetail, setProductDetail] = useState(null); //fetched product
+    const [products, setProducts] = useState('');//suggestions
 
-    const {addToCart,decrement,isProductInCart} = useCartContext()
+    const {isProductInCart,dispatch} = useCartContext()
     
     const {id} = useParams()
 
     useEffect(()=>{
-
+        
       const fetchResults = async () => {
           const data = await fetchFromAPI(`products/${id}`)
           setProductDetail(data)
-    
+
           const relative = await fetchFromAPI(`products/category/${data.category}?limit=4`)
           setProducts(relative)
       }
       fetchResults()
     },[id])
 
+    const HandleAdd = (e,productDetail) =>{
+        e.preventDefault()
+        dispatch({type:"ADD_TO_CART",payload: productDetail})
+    }
+    const HandleDec = (productDetail) =>{
+        dispatch({type:"DECREMENT",payload: productDetail})
+    }
     
     if(!productDetail) {
         return(
@@ -51,12 +58,14 @@ const ProductPage = () => {
                     <p className="cat">{productDetail.category}</p>
                     <p className="desc">{productDetail.description.slice(0,200)}</p>
                     {isProductInCart(productDetail.id) ? 
-                    <IncDecBtn 
-                    decrement={decrement}
-                    isProductInCart={isProductInCart}
-                    addToCart={addToCart}
-                    productDetail={productDetail} /> :
-                    <a href="/" onClick={(e)=>addToCart(e,productDetail)}>Add to cart</a>}
+                        <IncDecBtn 
+                        decrement={HandleDec}
+                        isProductInCart={isProductInCart}
+                        addToCart={HandleAdd}
+                        productDetail={productDetail} /> 
+                        :
+                        <a href="/" onClick={(e)=>HandleAdd(e,productDetail)}>Add to cart</a>
+                    }
                 </div>
             </div>
 
