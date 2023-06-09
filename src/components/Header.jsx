@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { BiCartAlt,BiUser } from "react-icons/bi";
 import {useCartContext} from '../utils/CartContextProvider'
+import { useAuthContext } from "../utils/AuthContextProvider";
 
 const Header = () => {
 
     const {state} = useCartContext()
-  
+    const {userData} = useAuthContext()
     return ( 
     <header>
         <div>
@@ -28,7 +29,7 @@ const Header = () => {
           <div>
             <SearchBar/>
             <Link to='/cart' className="cart-icon"><BiCartAlt size='20'/><span>{state.cart.length}</span></Link>
-            <BiUser size='20'/>
+            {userData? <BiUser size='20'/> : <Link to='/login'>Sign up</Link>}
           </div>
         </nav>
     </header>

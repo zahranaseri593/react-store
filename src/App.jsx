@@ -5,11 +5,11 @@ import MainPage from './components/MainPage';
 import ProductPage from './components/ProductPage';
 import Cart from './components/Cart';
 import Transaction from './components/Transaction'
-import { CartContextProvider } from './utils/CartContextProvider';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
-    <CartContextProvider>
       <BrowserRouter>
         <Layout>
           <Routes>
@@ -18,12 +18,11 @@ function App() {
               <Route path='/products/:id' element={<ProductPage />}/>
               <Route path='/cart/:id?' element={<Cart/>}/>
               <Route path='/transaction' element={<Transaction />}/>
-              <Route path='/register' element={<p>register</p>}/>
-              <Route path='/login' element={<p>login</p>}/>
+              <Route path='/register' element={<Register />}/>
+              <Route path='/login' element={<Login />}/>
           </Routes>
         </Layout>
       </BrowserRouter>
-    </CartContextProvider>
   );
 }
 
