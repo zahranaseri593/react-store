@@ -1,20 +1,22 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuthContext } from "../utils/AuthContextProvider";
 
 const Login = () => {
     const [formData,setFormData] = useState({username:'',password:''})
 
-    const {UserLogin,error} = useAuthContext()
+    const {UserLogin,error,userData} = useAuthContext()
 
     const SubmitLogin = (e) => {
         e.preventDefault()
         UserLogin(formData)
     }
-
+    
     const handleform = (e) => {
         setFormData(prev=>({...prev,[e.target.name]: e.target.value}))
     }
+
+    if(userData) return <Navigate replace to="/products" />
     
     return (
         <div className="sign-container">

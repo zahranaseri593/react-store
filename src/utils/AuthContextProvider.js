@@ -1,11 +1,16 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router";
 
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
     const [userData,setUserData] = useState()
     const [error,setError] = useState()
+
+    useEffect(()=>{
+        setUserData(localStorage.getItem("UserAuth"))
+    },[userData])
 
     const UserLogin = async (data) => {
         try {
@@ -16,12 +21,11 @@ export const AuthContextProvider = ({children}) => {
                 headers:{ 
                     'Content-type': 'application/json; charset=UTF-8',
                 }
-            }
-            )
+            })
             setUserData({...data,...response.data})
+            localStorage.setItem('UserAuth', userData)
         } catch (error) {
             if(error.response) setError(error.response.data)
-            
         }
     }
 
