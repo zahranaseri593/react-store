@@ -6,6 +6,8 @@ const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
     const [userData,setUserData] = useState()
+    const [register, setRegsiter] = useState() //to simulate register
+    const [loading,setLoading] = useState(false)
     const [error,setError] = useState()
 
     useEffect(()=>{
@@ -14,6 +16,7 @@ export const AuthContextProvider = ({children}) => {
 
     const UserLogin = async (data) => {
         try {
+            setLoading(true)
             setError('')
             const response = await axios.post('https://fakestoreapi.com/auth/login',
             JSON.stringify({...data})
@@ -24,35 +27,35 @@ export const AuthContextProvider = ({children}) => {
             })
             setUserData({...data,...response.data})
             localStorage.setItem('UserAuth', userData)
+            if(userData) setLoading(false)
         } catch (error) {
-            if(error.response) setError(error.response.data)
+            if(error.response) {
+                setError(error.response.data)
+                setLoading(false)
+            }
+        
         }
     }
 
+    //in the fake db users arent added, so I just simulate the experience of registering
     const UserRegister = async (data) => {
         try {
+            setError('')
             const response = await axios.post('https://api.storerestapi.com/auth/register',
-            JSON.stringify({
-               name: 'Alex Pi',
-               email: 'example@mail.com',
-               number: 12025550108,
-               password: 'Simple12345',
-               password_repeat: 'Simple12345'
-            })
+            JSON.stringify({...data})
             ,{
                 headers:{ 
                     'Content-type': 'application/json; charset=UTF-8',
                 }
-            }
-            )
-            console.log(response)
+            })
+            setRegsiter({...data,...response.data})
         } catch (error) {
-            console.log(error)
+            if(error.response) setError(error.response.data)
         }
     }
     
     return(
-        <AuthContext.Provider value={{userData,setUserData,UserLogin,UserRegister,error}}>
+        <AuthContext.Provider value={{userData,setUserData,UserLogin,UserRegister,register,error,loading}}>
             {children}
         </AuthContext.Provider>
     )

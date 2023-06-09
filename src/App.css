@@ -636,3 +636,6 @@ footer .container{
   margin: auto;
 }
 
+.sign-container .spinner{
+  margin-top: -30px;
+}
