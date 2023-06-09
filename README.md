@@ -1,1 +1,3 @@
-an ecommerce website built with the fake store api . https://fakestoreapi.com/
+an e-commerce project developed with React js which was built on https://fakestoreapi.com/ fake api service.
+
+some features implemented on this project are : product list, filters, shopping cart, user authentication and etc...
