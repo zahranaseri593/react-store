@@ -58,7 +58,7 @@ const MainPage = () => {
               <div className='off-text'>
                 <p>limited offer</p>
                 <h1>35% off only this friday and get special gift</h1>
-                <a href='#' >Grab it now → </a>
+                <a href='/' >Grab it now → </a>
               </div>
             </div>
 
@@ -70,7 +70,7 @@ const MainPage = () => {
                 <BiEnvelope size='24'/>
                 <input type='text' placeholder='Enter your email'/>
                 </div>
-                <a href="#">Subscribe</a>
+                <a href="/">Subscribe</a>
               </div>
               <p>You will be able to unsubscribe at any time <br/> Read our Privacy Policy <a href='/'>here</a></p>
             </div>

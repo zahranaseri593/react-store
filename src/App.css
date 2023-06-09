@@ -639,3 +639,29 @@ footer .container{
 .sign-container .spinner{
   margin-top: -30px;
 }
+
+.userIcon {
+  position: relative;
+}
+
+.userIcon:hover .logOut{
+  display: block !important;
+}
+
+.userIcon > .logOut{
+  display: none;
+  position:absolute;
+  top: 20px;
+  left: 0;
+  background-color: #fdfdfd;
+  border: 1px solid #e3e3e3;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loginLink{
+  text-decoration: none;
+  color: var(--darkest-color);
+}

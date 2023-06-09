@@ -5,9 +5,14 @@ import {useCartContext} from '../utils/CartContextProvider'
 import { useAuthContext } from "../utils/AuthContextProvider";
 
 const Header = () => {
-
     const {state} = useCartContext()
-    const {userData} = useAuthContext()
+    const {userData,setUserData} = useAuthContext()
+
+    const logOut = ()=>{
+        setUserData('')
+        localStorage.removeItem("UserAuth")
+    }
+
     return ( 
     <header>
         <div>
@@ -29,7 +34,12 @@ const Header = () => {
           <div>
             <SearchBar/>
             <Link to='/cart' className="cart-icon"><BiCartAlt size='20'/><span>{state.cart.length}</span></Link>
-            {userData? <BiUser size='20'/> : <Link to='/login'>Sign up</Link>}
+            {userData? 
+            <div className="userIcon">
+              <BiUser size='20'/><div className="logOut" onClick={logOut}>Log out</div>
+            </div>
+             : 
+            <Link className="loginLink" to='/login'>Sign up</Link>}
           </div>
         </nav>
     </header>
